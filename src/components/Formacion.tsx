@@ -1,15 +1,4 @@
 const Formacion = () => {
-  const experiencia = [
-    {
-      id: 1,
-      titulo: "Desarrollador Full-Stack (Freelance)",
-      institucion: "Independiente | Cotuí, RD",
-      fecha: "Septiembre 2025 - Presente",
-      descripcion: "Diseño, desarrollo y despliegue a producción de El Detallista Cotuisano (e-commerce en Azure) y desarrollo de un sistema de gestión administrativo y de inventario para un negocio local.",
-      destacado: true
-    }
-  ];
-
   const educacion = [
     {
       id: 1,
