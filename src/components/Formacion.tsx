@@ -50,22 +50,35 @@ const Formacion = () => {
           
           {/* Columna Izquierda: Experiencia Laboral */}
           <div>
-            <h3 className="text-2xl font-bold text-slate-200 mb-8 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400 mr-3"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-              Experiencia Laboral
-            </h3>
-            
-            <div className="space-y-8">
-              {experiencia.map((item) => (
-                <div key={item.id} className="relative pl-6 border-l-2 border-slate-700 hover:border-cyan-400 transition-colors group">
-                  <div className="absolute w-3 h-3 bg-slate-900 border-2 border-cyan-400 rounded-full -left-[7.5px] top-1 group-hover:bg-cyan-400 transition-colors"></div>
-                  
-                  <div className="text-cyan-400 font-mono text-sm mb-1">{item.fecha}</div>
-                  <h4 className="text-xl font-bold text-slate-100 mb-1">{item.titulo}</h4>
-                  <div className="text-slate-400 font-semibold text-sm mb-3">{item.institucion}</div>
-                  <p className="text-slate-400 leading-relaxed text-sm">{item.descripcion}</p>
-                </div>
-              ))}
+            <div className="flex items-center gap-3 mb-8">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+              <h3 className="text-2xl font-bold text-slate-100">Experiencia Laboral</h3>
+            </div>
+
+            <div className="border-l-2 border-slate-700 ml-3">
+              
+             {/* Experiencia 1: Proyectos Grandes (Actual) */}
+              <div className="relative pl-8 mb-12">
+                <div className="absolute -left-[9px] top-1.5 w-4 h-4 border-2 border-cyan-400 rounded-full bg-slate-900"></div>
+                <span className="text-cyan-400 font-mono text-sm">Septiembre 2026 - Presente</span>
+                <h4 className="text-xl font-bold text-slate-100 mt-2">Desarrollador Full-Stack</h4>
+                <span className="text-slate-400 text-sm block mb-4">Freelance | Cotuí, RD</span>
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  Provisión de servicios de desarrollo de software a medida. Como contrato principal, lideré el ciclo completo de creación de la plataforma e-commerce para el supermercado El Detallista, abarcando desde la arquitectura técnica hasta el despliegue en Microsoft Azure. En paralelo, desarrollo arquitecturas backend y APIs RESTful para aplicaciones móviles independientes.
+                </p>
+              </div>
+
+              {/* Experiencia 2: Sistema de Gestión */}
+              <div className="relative pl-8">
+                <div className="absolute -left-[9px] top-1.5 w-4 h-4 border-2 border-slate-500 rounded-full bg-slate-900"></div>
+                <span className="text-cyan-400 font-mono text-sm">Enero 2026 - Marzo 2026</span>
+                <h4 className="text-xl font-bold text-slate-100 mt-2">Desarrollador de Software</h4>
+                <span className="text-slate-400 text-sm block mb-4">Freelance | Cotuí, RD</span>
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  Desarrollo de un sistema de control administrativo e inventario adaptado a las necesidades operativas de un pequeño negocio de empanadas nombrado "Empanadas RYM", optimizando el flujo de caja y seguimiento de stock.
+                </p>
+              </div>
+
             </div>
           </div>
 
