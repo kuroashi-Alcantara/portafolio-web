@@ -5,6 +5,7 @@ import Habilidades from './components/Habilidades';
 import Formacion from './components/Formacion'; // <-- 1. Importa el componente
 import Footer from './components/Footer';
 import ProyectoDetalle from './components/ProyectoDetalle';
+import BotonSubir from './components/BotonSubir';
 
 function HomePage() {
   return (
@@ -27,9 +28,11 @@ function App() {
             <Route path="/proyecto/:slug" element={<ProyectoDetalle />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <BotonSubir />
         </main>
         
         <Footer />
+        
       </div>
     </BrowserRouter>
   );
