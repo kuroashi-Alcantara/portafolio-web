@@ -1,20 +1,35 @@
+export interface CaracteristicaDetalle {
+    titulo: string;
+    descripcion: string[];
+    imagenes: string[]; // Arreglo para soportar 1 o más imágenes por característica
+}
+
+export interface SeccionCasoEstudio {
+    titulo: string;
+    introduccion?: string;
+    caracteristicas: CaracteristicaDetalle[];
+}
+
 export interface Proyecto {
     id: number;
     slug: string;
     titulo: string;
     descripcion: string;
     tecnologias: string[];
-    imagenPrincipal: string; // Será la imagen en reposo (ej: el logo)
-    imagenHover?: string;    // Será la imagen que aparece al pasar el cursor
-    
-    // Información detallada para la pantalla del proyecto
+    imagenPrincipal: string;
+    imagenHover?: string;
+
+    // Estructura Clásica (Para SanApi y Landing BPD)
     elReto?: string;
     laSolucion?: string;
     arquitecturaBackend?: string;
     caracteristicasCliente?: string[];
     caracteristicasAdmin?: string[];
-    
-    // Enlaces de Interacción (Para los botones e íconos)
+
+    // NUEVA ESTRUCTURA: Para Casos de Estudio Avanzados (El Detallista)
+    casoEstudio?: SeccionCasoEstudio[];
+
+    // Enlaces
     enlaceWeb?: string | null;
     githubFrontend?: string | null;
     githubBackend?: string | null;
@@ -25,26 +40,83 @@ export const misProyectos: Proyecto[] = [
         id: 1,
         slug: "el-detallista",
         titulo: "E-Commerce El Detallista",
-        descripcion: "Plataforma completa de ventas en producción. Incluye panel administrativo, gestión de inventario en tiempo real y módulo de direcciones con geolocalización.",
+        descripcion: "Plataforma completa de ventas en producción y sistema operativo logístico. Incluye panel administrativo, gestión de inventario en tiempo real y módulo de direcciones con geolocalización satelital.",
         tecnologias: ["React", "TypeScript", "C# .NET API", "SQL Server"],
-        imagenPrincipal: "/images/detallista-logo.jpg",
+        imagenPrincipal: "/images/detallista-logo.jpg", 
         imagenHover: "/images/detallista-hero.jpg",
-        elReto: "El supermercado necesitaba digitalizar su catálogo completo y gestionar pedidos locales sin depender de plataformas de terceros con comisiones altas.",
-        laSolucion: "Diseñé e implementé una arquitectura full-stack desacoplada con una API REST sólida en C# .NET y un frontend altamente reactivo en React con TypeScript.",
-        arquitecturaBackend: "Endpoints optimizados para la consulta rápida del catálogo, autenticación segura y lógica de negocio para la gestión de estados de pedidos.",
-        caracteristicasCliente: [
-            "Catálogo dinámico por categorías e inventario en tiempo real.",
-            "Módulo interactivo de direcciones con geolocalización por mapas.",
-            "Carrito de compras responsivo y flujo de checkout simplificado."
-        ],
-        caracteristicasAdmin: [
-            "Dashboard de administración protegido para control del negocio.",
-            "Gestión de productos (crear, editar, ocultar y eliminar stock).",
-            "Controles dinámicos de visibilidad de categorías en la portada."
-        ],
-        enlaceWeb: "https://www.eldetallistacotuisano.com", // El link real de tu CV
+        enlaceWeb: "https://www.eldetallistacotuisano.com", // ENLACE A PRODUCCIÓN
         githubFrontend: null,
-        githubBackend: null
+        githubBackend: null,
+
+        // NUEVA ESTRUCTURA DE CASO DE ESTUDIO CON IMÁGENES
+        casoEstudio: [
+            {
+                titulo: "La Experiencia del Cliente (B2C)",
+                introduccion: "El enfoque principal del frontend fue reducir la fricción en el proceso de compra, adaptando lógicas de negocio complejas de un supermercado físico a una interfaz digital intuitiva.",
+                caracteristicas: [
+                    {
+                        titulo: "Catálogo Inteligente y Filtrado Dinámico",
+                        descripcion: [
+                            "Lógica Dual de Productos: Sistema de renderizado condicional para manejar productos con venta por unidades fraccionadas (ej. libras de carne o vegetales) frente a productos de unidad estándar.",
+                            "Filtros Accionables: Categorías dinámicas alimentadas desde el panel administrativo, integrando filtros automáticos para ofertas, combos y especiales por volumen."
+                        ],
+                        imagenes: ["/images/img-catalogo.jpg", "/images/img-categoria.jpg"]
+                    },
+                    {
+                        titulo: "Fricción Cero en la Compra",
+                        descripcion: [
+                            "Accesibilidad Constante: Diseño de un botón de carrito flotante con indicador de estado en tiempo real, garantizando que el usuario nunca pierda de vista su intención de compra.",
+                            "Motor de Cálculo Dinámico: Lógica de carrito que procesa cálculos instantáneos en el cliente, desglosando subtotales, ahorros por ofertas y retenciones de impuestos (ITBIS)."
+                        ],
+                        imagenes: ["/images/img-botoncarritoflotante.jpg", "/images/img-carrito.jpg"]
+                    },
+                    {
+                        titulo: "Checkout y Logística de Última Milla",
+                        descripcion: [
+                            "Geolocalización de Alta Precisión: Mapas interactivos que capturan las coordenadas exactas (Lat/Lng) del usuario y se inyectan en la base de datos para trazar la ruta directa del repartidor.",
+                            "Gestión Inteligente de Pagos: Lógica condicional en el formulario. Si selecciona 'Efectivo', el sistema exige ingresar con cuánto pagará para calcular la devuelta. Si es 'Tarjeta', detona una alerta logística para despachar el Verifone."
+                        ],
+                        imagenes: ["/images/img-checkout.jpg", "/images/img-checkout2.jpg"]
+                    },
+                    {
+                        titulo: "Ecosistema del Usuario",
+                        descripcion: [
+                            "Retención y Autogestión: Panel centralizado donde el cliente administra su historial de pedidos, listas recurrentes y una libreta de direcciones con soporte de reubicación manual de pines en el mapa."
+                        ],
+                        // Login como miniaturas complementarias a la cuenta de usuario
+                        imagenes: ["/images/img-cuenta-datosusurios.jpg", "/images/img-login.jpg", "/images/img-loginregistro.jpg"]
+                    }
+                ]
+            },
+            {
+                titulo: "El Motor Administrativo (B2B Operativo)",
+                introduccion: "El backend y el panel de control fueron estructurados para darle al supermercado control total sobre su catálogo y coordinar el flujo de trabajo interno.",
+                caracteristicas: [
+                    {
+                        titulo: "Gestión de Catálogo e Inventario",
+                        descripcion: [
+                            "Panel de Control Centralizado: Interfaz CRUD completa para que la gerencia gestione inventario, ajuste precios en tiempo real y controle la visibilidad pública de los productos según el stock."
+                        ],
+                        imagenes: ["/images/img-paneladministrador-inventario.jpg"]
+                    },
+                    {
+                        titulo: "Arquitectura de Roles Operativos (RBAC)",
+                        descripcion: [
+                            "Control de Acceso Basado en Roles: Creación de perfiles estrictos para Pickers (almacenistas) y Deliveries (repartidores).",
+                            "Auditoría Operativa: Módulo para registrar nuevos empleados, auditar su estado y activar/desactivar sus accesos instantáneamente."
+                        ],
+                        imagenes: ["/images/img-paneladministrador-registroempleado.jpg", "/images/img-paneladministrador-gestionpersonal.jpg"]
+                    },
+                    {
+                        titulo: "Auditoría y Despacho de Pedidos",
+                        descripcion: [
+                            "Dashboard Operativo: Consola de monitoreo con filtros de estado (Activos, En Camino, Entregados). Otorga a la gerencia una vista panorámica de la asignación de personal por cada orden."
+                        ],
+                        imagenes: ["/images/img-paneladministrador-gestiopedidos.jpg"]
+                    }
+                ]
+            }
+        ]
     },
     {
         id: 2,
